@@ -1,0 +1,78 @@
+<article class="weave-docs">
+
+    <section>
+        <h2>Getting Started</h2>
+        <p>Welcome to <strong>Weaveries</strong> — a writing and note-taking plugin for WordPress. Use it to create interconnected notes, plan stories, build world-bibles, and more.</p>
+        <p>After activating the plugin you will find a new <strong>Weaves</strong> menu in your WordPress admin sidebar.</p>
+    </section>
+
+    <section>
+        <h2>Weave Types</h2>
+        <p>Types let you categorise your Weaves — for example <em>Person</em>, <em>Place</em>, <em>Story</em>, or <em>Task</em>. Each type can have its own colour, icon, custom fields, and status fields.</p>
+        <ol>
+            <li>Go to <strong>Weaves → Settings → Weave Types</strong></li>
+            <li>Enter a name and click <strong>Add Type</strong></li>
+            <li>Use <strong>Edit Appearance</strong> to set a colour and icon</li>
+            <li>Add custom fields and assign status fields below each type</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>Custom Fields</h2>
+        <p>Custom fields let you store structured information on a Weave — such as a birth date, a URL, or a dropdown value.</p>
+        <p>Supported field types: <strong>Text</strong>, <strong>Text Area</strong>, <strong>Number</strong>, <strong>Date</strong>, <strong>URL</strong>, <strong>Email</strong>, <strong>Dropdown</strong>, <strong>Checkbox</strong>.</p>
+        <p>Fields are defined per Weave Type and appear in the <strong>Custom Fields</strong> metabox when editing a Weave of that type.</p>
+    </section>
+
+    <section>
+        <h2>Statuses</h2>
+        <p>Status fields let you track the state of a Weave — for example a <em>Task Status</em> with options <em>To Do</em>, <em>In Progress</em>, and <em>Done</em>.</p>
+        <ol>
+            <li>Go to <strong>Weaves → Settings → Statuses</strong></li>
+            <li>Create a status field (e.g. <em>Task Status</em>)</li>
+            <li>Add options, each with a colour and a meaning (<em>New</em>, <em>In Progress</em>, or <em>Complete</em>)</li>
+            <li>Assign the status field to one or more Weave Types in the <strong>Weave Types</strong> tab</li>
+        </ol>
+        <p>The <strong>main</strong> status field for a type is shown prominently on the Weave edit screen.</p>
+    </section>
+
+    <section>
+        <h2>Relationships</h2>
+        <p>You can link any two Weaves together using the <strong>Relationships</strong> metabox on the Weave edit screen. Optionally assign a relationship type (e.g. <em>References</em>, <em>Works At</em>) to give the link meaning.</p>
+        <p>Relationship types are managed under <strong>Weaves → Settings → Relationship Types</strong>.</p>
+    </section>
+
+    <section>
+        <h2>Shortcodes</h2>
+        <p>Use the <code>[weave]</code> shortcode to embed Weave data anywhere on your site.</p>
+        <table>
+            <thead>
+                <tr><th>Shortcode</th><th>Output</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>[weave field="field_name"]</code></td><td>The value of a custom field</td></tr>
+                <tr><td><code>[weave field="title"]</code></td><td>The Weave title</td></tr>
+                <tr><td><code>[weave field="content"]</code></td><td>The Weave body content</td></tr>
+                <tr><td><code>[weave status="status-slug"]</code></td><td>A colour-coded status badge</td></tr>
+                <tr><td><code>[weave field="field_name" id="42"]</code></td><td>Field from a specific Weave</td></tr>
+            </tbody>
+        </table>
+        <p>Click any shortcode chip in the Settings page or Custom Fields metabox to copy it to your clipboard.</p>
+    </section>
+
+    <section>
+        <h2>Frontend Pages &amp; Permalinks</h2>
+        <p>Each Weave has its own public page on the frontend. The URL prefix defaults to <code>/wiki/</code>, giving URLs like <code>yourdomain.com/wiki/my-weave</code>.</p>
+        <p>You can change the prefix under <strong>Weaves → Settings → General</strong>. Note that changing it will break existing URLs, so set it before your site goes live.</p>
+    </section>
+
+    <section>
+        <h2>General Tips</h2>
+        <ul>
+            <li>Assign multiple Weave Types to a single Weave to combine their fields and statuses</li>
+            <li>Use relationship types to build a meaningful knowledge graph</li>
+            <li>The <strong>default</strong> status field is pre-selected when no type is assigned</li>
+        </ul>
+    </section>
+
+</article>
