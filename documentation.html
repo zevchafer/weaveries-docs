@@ -1,78 +1,445 @@
-<article class="weave-docs">
+<div class="weaveries-docs">
 
-    <section>
-        <h2>Getting Started</h2>
-        <p>Welcome to <strong>Weaveries</strong> — a writing and note-taking plugin for WordPress. Use it to create interconnected notes, plan stories, build world-bibles, and more.</p>
-        <p>After activating the plugin you will find a new <strong>Weaves</strong> menu in your WordPress admin sidebar.</p>
-    </section>
+<style>
+.weaveries-docs { max-width: 860px; color: #374151; font-size: 14px; line-height: 1.7; }
+.weaveries-docs h2 { font-size: 22px; font-weight: 700; color: #111827; margin: 36px 0 10px; padding-bottom: 6px; border-bottom: 2px solid #e5e7eb; }
+.weaveries-docs h3 { font-size: 16px; font-weight: 700; color: #1f2937; margin: 28px 0 6px; }
+.weaveries-docs h4 { font-size: 14px; font-weight: 700; color: #374151; margin: 20px 0 4px; }
+.weaveries-docs p { margin: 0 0 12px; }
+.weaveries-docs ul, .weaveries-docs ol { margin: 0 0 12px 20px; }
+.weaveries-docs li { margin-bottom: 4px; }
+.weaveries-docs code { background: #f3f4f6; color: #4b5563; padding: 1px 5px; border-radius: 4px; font-size: 13px; font-family: 'SFMono-Regular', Consolas, monospace; }
+.weaveries-docs pre { background: #1e1e2e; color: #e2e8f0; padding: 14px 16px; border-radius: 6px; overflow-x: auto; font-size: 13px; font-family: 'SFMono-Regular', Consolas, monospace; margin: 0 0 14px; line-height: 1.6; }
+.weaveries-docs pre code { background: none; color: inherit; padding: 0; }
+.weaveries-docs table { width: 100%; border-collapse: collapse; margin: 0 0 14px; font-size: 13px; }
+.weaveries-docs th { background: #f9fafb; border: 1px solid #e5e7eb; padding: 7px 10px; text-align: left; font-weight: 600; color: #374151; }
+.weaveries-docs td { border: 1px solid #e5e7eb; padding: 7px 10px; vertical-align: top; }
+.weaveries-docs td code { font-size: 12px; }
+.weaveries-docs .docs-note { background: #eff6ff; border-left: 3px solid #6366f1; padding: 10px 14px; border-radius: 0 6px 6px 0; margin: 0 0 14px; }
+.weaveries-docs .docs-tip { background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 0 6px 6px 0; margin: 0 0 14px; }
+.weaveries-docs .docs-toc { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px 20px; margin-bottom: 32px; display: inline-block; min-width: 220px; }
+.weaveries-docs .docs-toc ol { margin: 6px 0 0 16px; }
+.weaveries-docs .docs-toc li { margin-bottom: 2px; }
+.weaveries-docs .docs-toc a { text-decoration: none; color: #6366f1; }
+.weaveries-docs .docs-toc a:hover { text-decoration: underline; }
+.weaveries-docs .sc-block { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; }
+.weaveries-docs .sc-block h4 { margin: 0 0 6px; font-size: 14px; }
+</style>
 
-    <section>
-        <h2>Weave Types</h2>
-        <p>Types let you categorise your Weaves — for example <em>Person</em>, <em>Place</em>, <em>Story</em>, or <em>Task</em>. Each type can have its own colour, icon, custom fields, and status fields.</p>
-        <ol>
-            <li>Go to <strong>Weaves → Settings → Weave Types</strong></li>
-            <li>Enter a name and click <strong>Add Type</strong></li>
-            <li>Use <strong>Edit Appearance</strong> to set a colour and icon</li>
-            <li>Add custom fields and assign status fields below each type</li>
-        </ol>
-    </section>
+<div class="docs-toc">
+  <strong>Table of Contents</strong>
+  <ol>
+    <li><a href="#wdocs-intro">Introduction</a></li>
+    <li><a href="#wdocs-concepts">Core Concepts</a></li>
+    <li><a href="#wdocs-types">Types</a></li>
+    <li><a href="#wdocs-statuses">Statuses</a></li>
+    <li><a href="#wdocs-fields">Custom Fields</a></li>
+    <li><a href="#wdocs-relations">Relationships</a></li>
+    <li><a href="#wdocs-outliner">The Outliner</a></li>
+    <li><a href="#wdocs-editor">The Standalone Editor</a></li>
+    <li><a href="#wdocs-shortcodes">Shortcodes</a>
+      <ol>
+        <li><a href="#wdocs-sc-display">Display</a></li>
+        <li><a href="#wdocs-sc-navigation">Navigation &amp; Hierarchy</a></li>
+        <li><a href="#wdocs-sc-kanban">Kanban</a></li>
+        <li><a href="#wdocs-sc-calendar">Calendar</a></li>
+        <li><a href="#wdocs-sc-list">List</a></li>
+        <li><a href="#wdocs-sc-editing">Editing &amp; Actions</a></li>
+      </ol>
+    </li>
+    <li><a href="#wdocs-settings">Settings Reference</a></li>
+  </ol>
+</div>
 
-    <section>
-        <h2>Custom Fields</h2>
-        <p>Custom fields let you store structured information on a Weave — such as a birth date, a URL, or a dropdown value.</p>
-        <p>Supported field types: <strong>Text</strong>, <strong>Text Area</strong>, <strong>Number</strong>, <strong>Date</strong>, <strong>URL</strong>, <strong>Email</strong>, <strong>Dropdown</strong>, <strong>Checkbox</strong>.</p>
-        <p>Fields are defined per Weave Type and appear in the <strong>Custom Fields</strong> metabox when editing a Weave of that type.</p>
-    </section>
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<h2 id="wdocs-intro">1. Introduction</h2>
 
-    <section>
-        <h2>Statuses</h2>
-        <p>Status fields let you track the state of a Weave — for example a <em>Task Status</em> with options <em>To Do</em>, <em>In Progress</em>, and <em>Done</em>.</p>
-        <ol>
-            <li>Go to <strong>Weaves → Settings → Statuses</strong></li>
-            <li>Create a status field (e.g. <em>Task Status</em>)</li>
-            <li>Add options, each with a colour and a meaning (<em>New</em>, <em>In Progress</em>, or <em>Complete</em>)</li>
-            <li>Assign the status field to one or more Weave Types in the <strong>Weave Types</strong> tab</li>
-        </ol>
-        <p>The <strong>main</strong> status field for a type is shown prominently on the Weave edit screen.</p>
-    </section>
+<p><strong>Weaveries</strong> is a WordPress plugin for personal knowledge management (PKM), worldbuilding, and project management. It lets you create structured, interconnected notes called <em>Weaves</em> — each with custom types, statuses, fields, and hierarchical relationships — and display them anywhere on your site using shortcodes.</p>
 
-    <section>
-        <h2>Relationships</h2>
-        <p>You can link any two Weaves together using the <strong>Relationships</strong> metabox on the Weave edit screen. Optionally assign a relationship type (e.g. <em>References</em>, <em>Works At</em>) to give the link meaning.</p>
-        <p>Relationship types are managed under <strong>Weaves → Settings → Relationship Types</strong>.</p>
-    </section>
+<p>Key capabilities:</p>
+<ul>
+  <li>Create and organise Weaves in a drag-and-drop tree (the Outliner)</li>
+  <li>Assign Types with custom icons and colours</li>
+  <li>Track progress with configurable Status fields (Kanban-style)</li>
+  <li>Attach Custom Fields (text, number, date, dropdown, checkbox, …)</li>
+  <li>Link Weaves together with named Relationship types</li>
+  <li>Embed Kanban boards, calendars, lists, and outliners on any page</li>
+  <li>Use the full-screen Standalone Editor for a distraction-free writing experience</li>
+</ul>
 
-    <section>
-        <h2>Shortcodes</h2>
-        <p>Use the <code>[weave]</code> shortcode to embed Weave data anywhere on your site.</p>
-        <table>
-            <thead>
-                <tr><th>Shortcode</th><th>Output</th></tr>
-            </thead>
-            <tbody>
-                <tr><td><code>[weave field="field_name"]</code></td><td>The value of a custom field</td></tr>
-                <tr><td><code>[weave field="title"]</code></td><td>The Weave title</td></tr>
-                <tr><td><code>[weave field="content"]</code></td><td>The Weave body content</td></tr>
-                <tr><td><code>[weave status="status-slug"]</code></td><td>A colour-coded status badge</td></tr>
-                <tr><td><code>[weave field="field_name" id="42"]</code></td><td>Field from a specific Weave</td></tr>
-            </tbody>
-        </table>
-        <p>Click any shortcode chip in the Settings page or Custom Fields metabox to copy it to your clipboard.</p>
-    </section>
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<h2 id="wdocs-concepts">2. Core Concepts</h2>
 
-    <section>
-        <h2>Frontend Pages &amp; Permalinks</h2>
-        <p>Each Weave has its own public page on the frontend. The URL prefix defaults to <code>/wiki/</code>, giving URLs like <code>yourdomain.com/wiki/my-weave</code>.</p>
-        <p>You can change the prefix under <strong>Weaves → Settings → General</strong>. Note that changing it will break existing URLs, so set it before your site goes live.</p>
-    </section>
+<h3>Weaves</h3>
+<p>A <strong>Weave</strong> is the fundamental unit of content — equivalent to a WordPress post of the custom type <code>weave</code>. Each Weave has a title, a rich-text body (powered by the WordPress block editor or the standalone editor), and can be connected to any number of other Weaves through the Outliner and Relationships systems.</p>
 
-    <section>
-        <h2>General Tips</h2>
-        <ul>
-            <li>Assign multiple Weave Types to a single Weave to combine their fields and statuses</li>
-            <li>Use relationship types to build a meaningful knowledge graph</li>
-            <li>The <strong>default</strong> status field is pre-selected when no type is assigned</li>
-        </ul>
-    </section>
+<p>Weaves can have one of the following WordPress post statuses:</p>
+<ul>
+  <li><strong>Published</strong> — visible to all visitors according to your theme.</li>
+  <li><strong>Draft</strong> — visible only to logged-in editors.</li>
+  <li><strong>Private</strong> — visible only to logged-in users.</li>
+  <li><strong>Archived</strong> — a custom status that hides a Weave from Kanban boards and normal listings. It can be restored at any time.</li>
+</ul>
 
-</article>
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<h2 id="wdocs-types">3. Types</h2>
+
+<p>Types categorise your Weaves. You might have types like <em>Task</em>, <em>Note</em>, <em>Character</em>, <em>Location</em>, or <em>Project</em>. Each type has a name, slug, colour, and optional Font Awesome icon.</p>
+
+<p>Types are managed under <strong>Weaves → Settings → Types</strong>.</p>
+
+<h3>System Types</h3>
+<p>The plugin seeds a small set of built-in system types that cannot be deleted:</p>
+<ul>
+  <li><strong>Note</strong> — general-purpose note (blue, <code>fa-solid fa-note-sticky</code>)</li>
+  <li><strong>Task</strong> — actionable item (green, <code>fa-solid fa-check-circle</code>)</li>
+  <li><strong>Category</strong> — grouping container (yellow, <code>fa-solid fa-folder-open</code>)</li>
+</ul>
+
+<p>You can still customise the colour and icon of system types, and create as many additional types as you need.</p>
+
+<h3>Assigning Types to a Weave</h3>
+<p>Types are assigned in the Weave's edit screen in the WordPress admin, or inline on the frontend using the <code>[weave types edit="true"]</code> shortcode. A Weave can have multiple types simultaneously.</p>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<h2 id="wdocs-statuses">4. Statuses</h2>
+
+<p>Statuses let you track the state of a Weave through a user-defined workflow. A <strong>Status Field</strong> (e.g. <em>Task Status</em>) has a slug and a list of <strong>Status Options</strong> (e.g. <em>To Do</em>, <em>In Progress</em>, <em>Done</em>), each with a configurable colour.</p>
+
+<p>Status Fields are managed under <strong>Weaves → Settings → Statuses</strong>.</p>
+
+<h3>Assigning Status Fields to Types</h3>
+<p>Each type can have one or more status fields assigned to it. One field per type is marked as the <em>main</em> field, which is used by Kanban boards and the auto-resolving status shortcodes. You can also designate a globally-default status field that is preferred when a Weave has multiple types.</p>
+
+<h3>Setting a Status Value</h3>
+<p>Status values are set on the Weave's edit screen, or interactively on the frontend using the <code>[weave status picker="true"]</code> shortcode.</p>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<h2 id="wdocs-fields">5. Custom Fields</h2>
+
+<p>Custom Fields let you attach structured data to Weaves. Fields are created under <strong>Weaves → Settings → Fields</strong> and can optionally be scoped to specific Types.</p>
+
+<h3>Field Types</h3>
+<table>
+  <thead><tr><th>Field Type</th><th>Description</th><th>Filter UI</th></tr></thead>
+  <tbody>
+    <tr><td><code>text</code></td><td>Single-line text</td><td>Text contains…</td></tr>
+    <tr><td><code>textarea</code></td><td>Multi-line text</td><td>Text contains…</td></tr>
+    <tr><td><code>number</code></td><td>Numeric value</td><td>Min / Max range</td></tr>
+    <tr><td><code>date</code></td><td>Date picker (ISO 8601)</td><td>From / To date range</td></tr>
+    <tr><td><code>url</code></td><td>URL</td><td>Text contains…</td></tr>
+    <tr><td><code>email</code></td><td>Email address</td><td>Text contains…</td></tr>
+    <tr><td><code>select</code></td><td>Dropdown with predefined options</td><td>Dropdown — exact match</td></tr>
+    <tr><td><code>checkbox</code></td><td>Boolean yes/no</td><td>Yes / No dropdown</td></tr>
+  </tbody>
+</table>
+
+<h3>Displaying a Field Value</h3>
+<p>Use the <code>[weave field="field_name"]</code> shortcode on any page where the current post is a Weave to display its value.</p>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<h2 id="wdocs-relations">6. Relationships</h2>
+
+<p>Relationships let you link two Weaves together through a named connection type — for example <em>References</em>, <em>Inspired By</em>, or <em>Part Of</em>. Relationship Types are managed under <strong>Weaves → Settings → Relationships</strong>.</p>
+
+<p>Relationships are directional: Weave A <em>references</em> Weave B. You can view and edit all relationships attached to a Weave from the <strong>Relationships</strong> meta box in the edit screen.</p>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<h2 id="wdocs-outliner">7. The Outliner</h2>
+
+<p>The Outliner is the hierarchical tree view of all your Weaves. Parent-child relationships here are separate from Relationship types — they represent structural containment (e.g. a Project Weave that contains Task Weaves).</p>
+
+<h3>Key features</h3>
+<ul>
+  <li><strong>Drag and drop</strong> — reorder and reparent Weaves by dragging. When dropping onto an existing parent, a modal lets you choose between <em>Move here</em> (single parent) and <em>Add as extra parent</em> (multi-parent).</li>
+  <li><strong>Multi-parent support</strong> — a Weave can appear under more than one parent simultaneously.</li>
+  <li><strong>Type icons and colours</strong> — each Weave row shows its assigned type icons colour-coded by the type's colour.</li>
+  <li><strong>Collapse/expand</strong> — click the arrow next to any Weave to collapse its subtree.</li>
+  <li><strong>Auto-open</strong> — when the Outliner is shown on a Weave's own page, the tree automatically opens and highlights the current Weave.</li>
+</ul>
+
+<p>The Outliner is embedded using the <code>[weave outliner]</code> shortcode, or shown in the left panel of the Standalone Editor.</p>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<h2 id="wdocs-editor">8. The Standalone Editor</h2>
+
+<p>The Standalone Editor is a full-screen, three-pane writing environment accessible from <strong>Weaves → Open Editor</strong> in the WordPress admin, or directly via <code>/?weaveries_editor=1</code>.</p>
+
+<p>Append <code>&amp;post_id=123</code> to open a specific Weave. Requires the user to be logged in with <code>edit_posts</code> capability.</p>
+
+<h3>Layout</h3>
+<ul>
+  <li><strong>Left pane</strong> — Outliner tree (searchable) and a Search tab to quickly find any Weave by title, type, or status.</li>
+  <li><strong>Centre pane</strong> — Title input and the WordPress block editor for the Weave's content.</li>
+  <li><strong>Right pane</strong> — Details panel (status, type, dates) and a Relations tab.</li>
+</ul>
+
+<p>All three panes can be resized by dragging the dividers. The left and right panes can be collapsed with the chevron buttons. Panel widths and active tabs are saved per post in <code>localStorage</code>.</p>
+
+<h3>Hamburger menu</h3>
+<p>The <strong>☰</strong> button in the top-left opens a slide-down menu for quick navigation links (content coming in a future release).</p>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<h2 id="wdocs-shortcodes">9. Shortcodes</h2>
+
+<p>All shortcodes use the tag <code>[weave …]</code>. The first word after <code>weave</code> (written as a valueless attribute) selects the component. An additional helper shortcode <code>[weaveries_ref]</code> creates inline links.</p>
+
+<div class="docs-note">
+  <strong>Tip:</strong> Shortcodes that show editable controls (drag-and-drop, status pickers, type tags, etc.) only render their editing UI for logged-in users with the <code>edit_posts</code> capability. Visitors always see the read-only version.
+</div>
+
+<!-- ─────────────────────────────────────────────────────────────────────── -->
+<h3 id="wdocs-sc-display">9.1 Display Shortcodes</h3>
+
+<div class="sc-block">
+  <h4><code>[weave field="field_name"]</code></h4>
+  <p>Outputs the value of a custom field for the current Weave (or a specific one with <code>id="X"</code>).</p>
+  <p>Built-in field names: <code>title</code>, <code>content</code>, <code>excerpt</code>.</p>
+  <table>
+    <thead><tr><th>Attribute</th><th>Default</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>field</code></td><td><em>required</em></td><td>The <code>field_name</code> slug of the custom field, or a built-in name (<code>title</code>, <code>content</code>, <code>excerpt</code>).</td></tr>
+      <tr><td><code>id</code></td><td>current post</td><td>ID of the Weave to read from.</td></tr>
+    </tbody>
+  </table>
+  <pre><code>[weave field="title"]
+[weave field="due_date"]
+[weave field="content" id="42"]</code></pre>
+</div>
+
+<div class="sc-block">
+  <h4><code>[weave status]</code> / <code>[weave status="slug"]</code></h4>
+  <p>Displays the current status of a Weave as a styled coloured badge. Without a slug it auto-resolves the main status field for the Weave's assigned type.</p>
+  <table>
+    <thead><tr><th>Attribute</th><th>Default</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>status</code></td><td>auto-resolved</td><td>Slug of the status field to show.</td></tr>
+      <tr><td><code>id</code></td><td>current post</td><td>ID of the Weave to read from.</td></tr>
+    </tbody>
+  </table>
+  <pre><code>[weave status]
+[weave status="task-status"]
+[weave status="task-status" id="42"]</code></pre>
+</div>
+
+<div class="sc-block">
+  <h4><code>[weave status picker="true"]</code></h4>
+  <p>Displays all status options as clickable coloured pills. Clicking a pill saves the new status instantly via AJAX (editors only; read-only for visitors).</p>
+  <table>
+    <thead><tr><th>Attribute</th><th>Default</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>status</code></td><td>auto-resolved</td><td>Slug of the status field.</td></tr>
+      <tr><td><code>picker</code></td><td><code>false</code></td><td>Set to <code>true</code> to enable the interactive picker.</td></tr>
+      <tr><td><code>id</code></td><td>current post</td><td>ID of the Weave to read/write.</td></tr>
+    </tbody>
+  </table>
+  <pre><code>[weave status picker="true"]
+[weave status="task-status" picker="true"]</code></pre>
+</div>
+
+<div class="sc-block">
+  <h4><code>[weave types]</code></h4>
+  <p>Shows the types assigned to the current Weave as coloured pills. With <code>edit="true"</code>, logged-in editors can add and remove types via an autocomplete tag input. Changes are saved instantly via AJAX.</p>
+  <table>
+    <thead><tr><th>Attribute</th><th>Default</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>edit</code></td><td><code>false</code></td><td>Set to <code>true</code> to enable the editable tag input (editors only).</td></tr>
+      <tr><td><code>id</code></td><td>current post</td><td>ID of the Weave to show/edit types for.</td></tr>
+    </tbody>
+  </table>
+  <pre><code>[weave types]
+[weave types edit="true"]</code></pre>
+</div>
+
+<div class="sc-block">
+  <h4><code>[weaveries_ref id="X"]Label[/weaveries_ref]</code></h4>
+  <p>Creates a hyperlink to a specific Weave by its ID. The link text defaults to the Weave's title if no inner content is given. If the Weave is deleted, the shortcode gracefully falls back to plain text.</p>
+  <pre><code>[weaveries_ref id="42"]My Weave[/weaveries_ref]
+[weaveries_ref id="42"][/weaveries_ref]</code></pre>
+</div>
+
+<!-- ─────────────────────────────────────────────────────────────────────── -->
+<h3 id="wdocs-sc-navigation">9.2 Navigation &amp; Hierarchy Shortcodes</h3>
+
+<div class="sc-block">
+  <h4><code>[weave outliner]</code></h4>
+  <p>Embeds the full hierarchical Outliner tree. The tree auto-expands to the current Weave when placed on a Weave singular page. With <code>edit="true"</code>, logged-in editors can drag and drop to restructure the hierarchy.</p>
+  <table>
+    <thead><tr><th>Attribute</th><th>Default</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>edit</code></td><td><code>false</code></td><td>Enable drag-and-drop reordering (editors only).</td></tr>
+      <tr><td><code>view</code></td><td><em>empty</em></td><td>Optional view parameter passed to Weave links (for theme templates).</td></tr>
+    </tbody>
+  </table>
+  <pre><code>[weave outliner]
+[weave outliner edit="true"]</code></pre>
+  <div class="docs-tip">Multiple <code>[weave outliner]</code> shortcodes can appear on the same page — each runs as a fully independent instance.</div>
+</div>
+
+<div class="sc-block">
+  <h4><code>[weave hierarchy]</code></h4>
+  <p>Shows two sections — <strong>Parents</strong> and <strong>Children</strong> — listing all Weaves directly above or below the current Weave in the Outliner hierarchy. With <code>edit="true"</code>, editors can add or remove parents and children via an autocomplete tag input saved via AJAX.</p>
+  <table>
+    <thead><tr><th>Attribute</th><th>Default</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>edit</code></td><td><code>false</code></td><td>Enable interactive parent/child editing (editors only).</td></tr>
+      <tr><td><code>id</code></td><td>current post</td><td>ID of the Weave to show hierarchy for.</td></tr>
+    </tbody>
+  </table>
+  <pre><code>[weave hierarchy]
+[weave hierarchy edit="true"]</code></pre>
+</div>
+
+<div class="sc-block">
+  <h4><code>[weave favourites]</code></h4>
+  <p>Displays a horizontal bar of all Weaves marked as favourites, as clickable pills. With <code>edit="true"</code>, editors can add or remove favourites directly via autocomplete. Syncs live with the star button in <code>[weave toolbar]</code> on the same page.</p>
+  <table>
+    <thead><tr><th>Attribute</th><th>Default</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>edit</code></td><td><code>false</code></td><td>Enable the editable autocomplete input (editors only).</td></tr>
+    </tbody>
+  </table>
+  <pre><code>[weave favourites]
+[weave favourites edit="true"]</code></pre>
+</div>
+
+<!-- ─────────────────────────────────────────────────────────────────────── -->
+<h3 id="wdocs-sc-kanban">9.3 Kanban Shortcode</h3>
+
+<div class="sc-block">
+  <h4><code>[weave kanban]</code></h4>
+  <p>Embeds a Kanban board grouped by the options of a status field. Each column represents one status option; Weaves appear as cards inside the matching column. Weaves with no status value appear in an <em>Unassigned</em> column on the left.</p>
+  <table>
+    <thead><tr><th>Attribute</th><th>Default</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>status</code></td><td>auto-resolved</td><td>Slug of the status field to group by. If omitted, the main status field of the current Weave's type is used.</td></tr>
+      <tr><td><code>scope</code></td><td><code>all</code></td><td><code>all</code> — show every Weave with this status type.<br><code>children</code> — restrict to the current Weave's full descendant subtree.</td></tr>
+      <tr><td><code>edit</code></td><td><code>false</code></td><td>Enable drag-and-drop between columns to reassign status (editors only).</td></tr>
+      <tr><td><code>id</code></td><td>current post</td><td>When <code>scope="children"</code>, the root Weave ID. Defaults to the current post.</td></tr>
+    </tbody>
+  </table>
+  <pre><code>[weave kanban]
+[weave kanban status="task-status"]
+[weave kanban status="task-status" scope="children" edit="true"]</code></pre>
+  <p><strong>Lane collapse:</strong> Each Kanban lane has a collapse button. Collapsed/expanded state is saved per status field and root post in <code>localStorage</code>, so it persists across page loads.</p>
+</div>
+
+<!-- ─────────────────────────────────────────────────────────────────────── -->
+<h3 id="wdocs-sc-calendar">9.4 Calendar Shortcode</h3>
+
+<div class="sc-block">
+  <h4><code>[weave calendar]</code></h4>
+  <p>Embeds a full FullCalendar view. Weaves with a date field can be scheduled and displayed on the calendar. Logged-in editors can create new Weaves or assign existing ones to a date by clicking/dragging on the calendar. Events can be moved by dragging and removed via a right-click context menu.</p>
+  <table>
+    <thead><tr><th>Attribute</th><th>Default</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>outliner</code></td><td><code>false</code></td><td>Set to <code>true</code> to show the Outliner tree as a collapsible sidebar. Editors can drag Weaves from the tree directly onto the calendar to schedule them.</td></tr>
+    </tbody>
+  </table>
+  <pre><code>[weave calendar]
+[weave calendar outliner="true"]</code></pre>
+</div>
+
+<!-- ─────────────────────────────────────────────────────────────────────── -->
+<h3 id="wdocs-sc-list">9.5 List Shortcode</h3>
+
+<div class="sc-block">
+  <h4><code>[weave list]</code></h4>
+  <p>Renders a filterable, searchable list of Weaves. Results update instantly via AJAX — no page reload required.</p>
+  <table>
+    <thead><tr><th>Attribute</th><th>Default</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>types</code></td><td><em>all types</em></td><td>Comma-separated type slugs to restrict the list to (e.g. <code>types="task,project"</code>).</td></tr>
+      <tr><td><code>scope</code></td><td><code>all</code></td><td><code>all</code> — search all Weaves.<br><code>children</code> — only direct children of the current post.</td></tr>
+      <tr><td><code>search</code></td><td><code>false</code></td><td>Set to <code>true</code> to show a live search bar.</td></tr>
+      <tr><td><code>filters</code></td><td><em>none</em></td><td>Comma-separated filter specs (see below).</td></tr>
+      <tr><td><code>orderby</code></td><td><code>title</code></td><td><code>title</code>, <code>date</code>, or <code>modified</code>.</td></tr>
+      <tr><td><code>order</code></td><td><code>ASC</code></td><td><code>ASC</code> or <code>DESC</code>.</td></tr>
+      <tr><td><code>limit</code></td><td><code>50</code></td><td>Maximum results. Use <code>-1</code> for all.</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Filter specs</h4>
+  <p>The <code>filters</code> attribute accepts a comma-separated list of specs. Each spec adds one filter control to the collapsible filter panel:</p>
+  <table>
+    <thead><tr><th>Spec</th><th>Filter UI</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>type</code></td><td>Dropdown</td><td>Filter by Type.</td></tr>
+      <tr><td><code>status:slug</code></td><td>Dropdown</td><td>Filter by a specific status field (replace <code>slug</code> with the status field slug).</td></tr>
+      <tr><td><code>field:slug</code></td><td>Depends on field type</td><td>Filter by a custom field. Text fields → text input; number/date fields → min–max range; select fields → dropdown; checkbox fields → Yes/No dropdown.</td></tr>
+      <tr><td><code>relation:slug</code></td><td>Has / Has not dropdown</td><td>Filter by whether a Weave has any relationship of the given type.</td></tr>
+    </tbody>
+  </table>
+
+  <pre><code>[weave list]
+[weave list types="task" search="true"]
+[weave list scope="children" orderby="date" order="DESC" limit="20"]
+[weave list types="task,project" search="true"
+    filters="type,status:task-status,field:due-date,relation:references"]</code></pre>
+</div>
+
+<!-- ─────────────────────────────────────────────────────────────────────── -->
+<h3 id="wdocs-sc-editing">9.6 Editing &amp; Action Shortcodes</h3>
+
+<div class="sc-block">
+  <h4><code>[weave create]</code></h4>
+  <p>Renders a <em>Create</em> button. Clicking it opens a modal where the user can enter a title and optional type. The new Weave is saved as a draft via AJAX. If placed on a Weave page, the new Weave is automatically added as a child, and the Outliner on the same page refreshes. Only visible to users with <code>publish_posts</code> capability.</p>
+  <table>
+    <thead><tr><th>Attribute</th><th>Default</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>label</code></td><td><code>Create</code></td><td>Button label text.</td></tr>
+    </tbody>
+  </table>
+  <pre><code>[weave create]
+[weave create label="Add Task"]</code></pre>
+</div>
+
+<div class="sc-block">
+  <h4><code>[weave toolbar]</code></h4>
+  <p>Renders a small icon toolbar for logged-in editors. Only visible to users with <code>edit_posts</code>. All actions save via AJAX without a page reload.</p>
+  <table>
+    <thead><tr><th>Attribute</th><th>Default</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>icons</code></td><td><code>archive,favourite,hide</code></td><td>Comma-separated list of icons to show. Available: <code>archive</code> (toggle archived status), <code>favourite</code> (star), <code>hide</code> (hide/show on Kanban).</td></tr>
+      <tr><td><code>id</code></td><td>current post</td><td>ID of the Weave to act on.</td></tr>
+    </tbody>
+  </table>
+  <pre><code>[weave toolbar]
+[weave toolbar icons="favourite,hide"]</code></pre>
+</div>
+
+<div class="sc-block">
+  <h4><code>[weave archive_button]</code></h4>
+  <p>A dedicated Archive / Unarchive button for the current Weave. Clicking it toggles the archived status and reloads the page. Only visible to users with <code>edit_posts</code>.</p>
+  <table>
+    <thead><tr><th>Attribute</th><th>Default</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>label</code></td><td>Archive / Unarchive</td><td>Custom button label (overrides the automatic archive/unarchive text).</td></tr>
+      <tr><td><code>id</code></td><td>current post</td><td>ID of the Weave to act on.</td></tr>
+    </tbody>
+  </table>
+  <pre><code>[weave archive_button]
+[weave archive_button label="Send to Archive"]</code></pre>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<h2 id="wdocs-settings">10. Settings Reference</h2>
+
+<p>All plugin settings are found under <strong>Weaves → Settings</strong> in the WordPress admin. The settings page is divided into tabs:</p>
+
+<table>
+  <thead><tr><th>Tab</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Types</strong></td><td>Create, edit, reorder, and delete Weave types. Set name, slug, colour, and Font Awesome icon for each. System types can be customised but not deleted.</td></tr>
+    <tr><td><strong>Statuses</strong></td><td>Create status fields (e.g. <em>Task Status</em>) and their options (e.g. <em>To Do</em>, <em>In Progress</em>, <em>Done</em>). Assign status fields to types and mark one as the main field per type. Optionally set a globally-default status field.</td></tr>
+    <tr><td><strong>Fields</strong></td><td>Create custom fields with a name, slug, field type, and optional type scope. Reorder fields with drag and drop.</td></tr>
+    <tr><td><strong>Relationships</strong></td><td>Create named relationship types (e.g. <em>References</em>, <em>Inspired By</em>). Each has a name and slug.</td></tr>
+    <tr><td><strong>Documentation</strong></td><td>This page.</td></tr>
+  </tbody>
+</table>
+
+<div class="docs-note">
+  <strong>Note:</strong> Deleting a Type, Status Field, or Custom Field does not delete the Weaves that used them — it only removes the type/field definition and its stored values.
+</div>
+
+</div>
